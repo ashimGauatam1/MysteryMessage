@@ -47,5 +47,18 @@ export async function GET(request: Request) {
         status: 400,
       }
     );
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+    return Response.json(
+        {
+          success: false,
+          message: "Failed to get user message",
+        },
+        {
+          status: 500,
+        }
+      );
+  }
 }
+
+
