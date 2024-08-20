@@ -52,7 +52,7 @@ export async function POST(request: Request) {
       const NewUser = new UserModel({
         username,
         email,
-        hashPassword,
+        password:hashPassword,
         verifyCode,
         CodeExpiry: ExpiryDate,
         isacceptingMessage: true,

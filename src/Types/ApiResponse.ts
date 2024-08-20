@@ -6,3 +6,5 @@ export interface APIResponse {
     isacceptingmessage?:boolean,
     messages?:Array<message>
 }
+
+
