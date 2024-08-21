@@ -48,17 +48,15 @@ export async function GET(request: Request) {
       }
     );
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return Response.json(
-        {
-          success: false,
-          message: "Failed to get user message",
-        },
-        {
-          status: 500,
-        }
-      );
+      {
+        success: false,
+        message: "Failed to get user message",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
-
-

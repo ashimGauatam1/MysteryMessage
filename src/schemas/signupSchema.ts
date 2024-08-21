@@ -19,7 +19,7 @@ export const SignupSchema=z.object({
 
     username:usernameValidation,
 
-    eamil:z.string()
+    email:z.string()
 
             .email({message:"Please enter valid email address"}),
 
