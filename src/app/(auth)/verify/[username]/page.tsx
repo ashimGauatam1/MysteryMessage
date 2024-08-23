@@ -42,6 +42,7 @@ const page = () => {
       toast({
         title: "sucess",
         description: response.data.message,
+        variant:"success" 
       });
       router.replace("/sign-in");
     } catch (error) {
