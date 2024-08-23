@@ -1,13 +1,15 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/user";
-import { Grandiflora_One } from "next/font/google";
 
 export async function POST(request:Request){
     await dbConnect()
     try {
         const {username,code}=await request.json()
-        const decodedUsername=decodeURIComponent(username)  //optional
+       
+        const decodedUsername=decodeURIComponent(username.username)  //optional
+        console.log( decodedUsername)
        const user= await UserModel.findOne({username:decodedUsername})
+       console.log(user)
         if(!user){
             return Response.json({
                 success:false,
@@ -17,8 +19,7 @@ export async function POST(request:Request){
             })
         }else{
             const iscodevalid=user.verifyCode==code
-            const iscodenotexperied=new Date(user.CodeExpiry)>new Date()
-            if(iscodevalid && iscodenotexperied){
+            if(iscodevalid && user.CodeExpiry>new Date()){ //need to be consider
                 user.isVerified=true,
                 await user.save()
                 return Response.json({

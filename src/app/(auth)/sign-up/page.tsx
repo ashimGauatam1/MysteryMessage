@@ -61,7 +61,7 @@ const page = () => {
   }, [username]);
 
 
-  const onSubmit=async(data:z.infer<typeof  SignupSchema>) =>{
+  const onSubmit=async(data:z.infer<typeof SignupSchema>) =>{
     SetisSubmitting(true)
     try {
       const response=await axios.post('/api/signup',data)
@@ -75,9 +75,9 @@ const page = () => {
     } catch (error) {
       console.log("Error while submitting",error)
       toast({
-        title:"Success",
-        description:"Error while submitting",
-        variant: "destructive" 
+        title:"Error",
+        description:"User already exists",
+        variant:"success" 
       })
       SetisSubmitting(false)
     }
@@ -104,9 +104,16 @@ const page = () => {
                   debounced(e.target.value)}}
                 />
               </FormControl>
-                {
-                  ischeckingUsername && <Loader2 className="w-4 h-4 animate-spin" />
-                }
+                {<>
+                  
+                  {usernameMessage && <div className="flex items-center space-x-2">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <p className="text-green-500 font-bold">{usernameMessage}
+                    </p></div>}
+                  </>
+                }<p>
+                  
+                </p>
               <FormDescription>
                 This is your public display name.
               </FormDescription>
@@ -138,7 +145,7 @@ const page = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="pasword" placeholder="Enter your Password" {...field}
+                <Input type="password" placeholder="Enter your Password" {...field}
                 
                 />
               </FormControl>
@@ -162,6 +169,9 @@ const page = () => {
         </Button>
       </form>
     </Form>
+    <h6 className='mt-5'>
+          Already have your account?<a href='/sign-in' className='ml-2 text-purple-500 underline'>Register</a>
+    </h6>
     </div>
   </div>
 );
