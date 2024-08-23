@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document} from "mongoose";
+import mongoose, { Schema, Document, models} from "mongoose";
 
 export interface message extends Document {
   content: string;
@@ -73,6 +73,7 @@ const UserModel =
   mongoose.model<User>("User", UserSchema);
 
 export default UserModel;
+
 
 
 
